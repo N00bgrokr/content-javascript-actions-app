@@ -4,11 +4,13 @@ jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
-    steps:
-      - name: Hello world action step
-        id: hello
-        uses: ./
-        with:
-          who-to-greet: 'N00bgrokr'
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+    steps: 
+    - name: Checkout
+      uses: actions/checkout@v2 # $GITHUB_WORKSPACE is now available
+    - name: Hello world action step
+      id: hello
+      uses: ./
+      with:
+        who-to-greet: 'N00bgrokr'
+    - name: Get the output time
+      run: echo "The time was ${{ steps.hello.outputs.time }}"
